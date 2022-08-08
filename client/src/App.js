@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
 import { AddUnit } from './containers/AddUnit';
+import { AddWorkOrder } from './containers/AddWorkOrder';
+import SingleUnit from './containers/SingleUnit';
 
 function App() {
   useEffect(() => {
@@ -41,7 +43,9 @@ function App() {
 
       <div>
         <AddUnit />
+        <AddWorkOrder unitId='1' />
       </div>
+      <SingleUnit unitId={1} />
     </div>
   );
 }

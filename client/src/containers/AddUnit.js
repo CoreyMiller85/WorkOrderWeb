@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Input } from '../components/Input';
+import axios from 'axios';
+
 export const AddUnit = () => {
   const [value, setValue] = useState({
     address: '',
@@ -22,13 +24,21 @@ export const AddUnit = () => {
     setValue({ address: '', city: '', state: '', zip: '', community: '' });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios.post('http://localhost:3001/unit/create', value).then((response) => {
+      console.log(response);
+    });
+  };
+
   return (
     <div>
       <div>
         <h2>Add Unit container</h2>
       </div>
       <div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Input
             title='Unit Address'
             onChange={handleChange}
@@ -59,7 +69,7 @@ export const AddUnit = () => {
             name='community'
             value={value.community}
           />
-          <button onClick={(e) => handleReset(e)}>Reset</button>
+          <button>Reset</button>
           <button>Submit</button>
         </form>
       </div>

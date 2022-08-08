@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { Unit } = require('../db/models/Models');
+const { Unit, Workorder } = require('../db/models/Models');
 
 router.get('/:id', async (req, res) => {
-  const results = await Unit.findByPk(req.params.id);
+  const results = await Unit.findByPk(req.params.id, { include: Workorder });
   res.json(results);
 });
 
@@ -16,6 +16,12 @@ router.post('/createtest', async (req, res) => {
     community: 'test community',
   });
   res.json(result);
+});
+
+router.post('/create', async (req, res) => {
+  const data = req.body;
+  const query = await Unit.create(data);
+  res.json(query);
 });
 
 module.exports = router;

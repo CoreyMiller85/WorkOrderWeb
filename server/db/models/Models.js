@@ -24,6 +24,9 @@ const Unit = sequelize.define(
     community: {
       type: DataTypes.STRING,
     },
+    image: {
+      type: DataTypes.STRING,
+    },
   },
   {
     // Other model options go here
